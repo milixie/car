@@ -2,20 +2,49 @@
 
 > A Vue.js project
 
-## Build Setup
+## 项目创建
 
-``` bash
-# install dependencies
-npm install
+```
+# 使用 mpvue 小程序框架
 
-# serve with hot reload at localhost:8080
-npm run dev
+# 全局安装 vue-cli
+$ npm install --global vue-cli
 
-# build for production with minification
+# 创建一个基于 mpvue-quickstart 模板的新项目
+$ vue init mpvue/mpvue-quickstart car-brand
+
+# 安装依赖
+$ cd my-project
+$ npm install
+# 启动构建
+$ npm run dev
+
+# 压缩
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
+如果在 `npm run dev`的时候报错，使用 `sudo npm run dev`
+
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+使用 `scss` 需要安装
+
+```
+npm install node-sass
+npm install sass-loader
+```
+
+并且需要在 `build/util.js` 文件中引入 `sass-loader` 
+
+```angular2html
+
+const sassLoader = {
+	loader: 'sass-loader',
+	options: {
+		sourceMap: true
+	}
+}
+```
+
