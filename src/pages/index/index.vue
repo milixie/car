@@ -22,7 +22,6 @@
       </swiper>
     </div>
 
-
   </div>
 </template>
 
@@ -30,6 +29,7 @@
 import search from '@/components/search'
 import card from '@/components/card'
 import carList from '@/components/carList'
+const { request } = require('../../utils/request')
 
 export default {
 
@@ -154,6 +154,10 @@ export default {
     search,
     card,
     carList
+  },
+
+  async onShow () {
+    await request('GET', 'course', {})
   },
 
   methods: {

@@ -17,5 +17,12 @@ export default {
       navigationBarTitleText: '车牌大全',
       navigationBarTextStyle: '#fff'
     }
+  },
+  onShow: () => {
+    wx.login({
+      success: res => {
+        console.log('res', res)
+      }
+    })
   }
 }
