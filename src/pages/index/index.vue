@@ -1,6 +1,6 @@
 <template>
   <div class="container col-flex">
-    <search/>
+    <!--<search/>-->
     <ul class="tab flex flex-around">
       <li v-for="item in labelList"
           :key="item.itemId"
@@ -22,7 +22,7 @@
       </swiper>
     </div>
 
-    <div class="to-top"><i class="up iconfont icon-h5shanghua"></i></div>
+    <!--<div class="to-top"><i class="up iconfont icon-h5shanghua"></i></div>-->
   </div>
 </template>
 
