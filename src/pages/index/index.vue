@@ -22,6 +22,7 @@
       </swiper>
     </div>
 
+    <div class="to-top"><i class="up iconfont icon-h5shanghua"></i></div>
   </div>
 </template>
 
@@ -29,48 +30,15 @@
 import search from '@/components/search'
 import card from '@/components/card'
 import carList from '@/components/carList'
-const { request } = require('../../utils/request')
+import { totalList } from './../../utils/car'
+// const { request } = require('../../utils/request')
 
 export default {
 
   data () {
     return {
-      motto: 'Hello World',
       currentId: 0,
-      userInfo: {},
-      totalList: [{
-        img: 'http://piccdn.igetget.com/img/201803/06/201803061133123338129030.jpg',
-        name: 'test',
-        id: 1
-      }, {
-        img: 'http://piccdn.igetget.com/img/201803/06/201803061133123338129030.jpg',
-        name: 'test',
-        id: 2
-      }, {
-        img: 'http://piccdn.igetget.com/img/201803/06/201803061133123338129030.jpg',
-        name: 'test',
-        id: 3
-      }, {
-        img: 'http://piccdn.igetget.com/img/201803/06/201803061133123338129030.jpg',
-        name: 'test',
-        id: 4
-      }, {
-        img: 'http://piccdn.igetget.com/img/201803/06/201803061133123338129030.jpg',
-        name: 'test',
-        id: 1
-      }, {
-        img: 'http://piccdn.igetget.com/img/201803/06/201803061133123338129030.jpg',
-        name: 'test',
-        id: 2
-      }, {
-        img: 'http://piccdn.igetget.com/img/201803/06/201803061133123338129030.jpg',
-        name: 'test',
-        id: 3
-      }, {
-        img: 'http://piccdn.igetget.com/img/201803/06/201803061133123338129030.jpg',
-        name: 'test',
-        id: 4
-      }],
+      totalList,
       domesticList: [{
         img: 'http://piccdn.igetget.com/img/201801/31/201801311640468527399378.jpg',
         name: 'test',
@@ -157,7 +125,16 @@ export default {
   },
 
   async onShow () {
-    await request('GET', 'course', {})
+    // await request('GET', 'course', {})
+    wx.showLoading({
+      title: '努力加载中'
+    })
+    setTimeout(() => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '加载完毕'
+      })
+    }, 1000)
   },
 
   methods: {
@@ -174,24 +151,10 @@ export default {
     bindViewTap () {
       const url = '../logs/logs'
       wx.navigateTo({ url })
-    },
-    getUserInfo () {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: (res) => {
-              this.userInfo = res.userInfo
-            }
-          })
-        }
-      })
     }
   },
 
   created () {
-    // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
   }
 }
 </script>
@@ -220,6 +183,22 @@ export default {
     bottom: 0;
     right: 0;
     -webkit-overflow-scrolling: touch;
+  }
+  .to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    border: 0.5px solid #455A73;
+    background: #455A73;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    .up {
+      font-size: 20px;
+      color: #fff;
+    }
   }
 }
 </style>
