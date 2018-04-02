@@ -12,10 +12,9 @@
     props: ['list'],
     methods: {
       viewDetailInfo (e) {
-        console.log(e)
-        wx.navigateTo({
-          url: '../detail/detail'
-        })
+        // wx.navigateTo({
+        //   url: '../detail/detail'
+        // })
       }
     }
   }

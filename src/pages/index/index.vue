@@ -14,10 +14,10 @@
           <car-list :list="totalList"/>
         </swiper-item>
         <swiper-item>
-          <car-list :list="domesticList"/>
+          <car-list :list="famousList"/>
         </swiper-item>
         <swiper-item>
-          <car-list :list="abroadList"/>
+          <car-list :list="chinaList"/>
         </swiper-item>
       </swiper>
     </div>
@@ -39,80 +39,14 @@ export default {
     return {
       currentId: 0,
       totalList,
-      domesticList: [{
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311640468527399378.jpg',
-        name: 'test',
-        id: 1
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311640468527399378.jpg',
-        name: 'test',
-        id: 2
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311640468527399378.jpg',
-        name: 'test',
-        id: 3
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311640468527399378.jpg',
-        name: 'test',
-        id: 4
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311640468527399378.jpg',
-        name: 'test',
-        id: 1
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311640468527399378.jpg',
-        name: 'test',
-        id: 2
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311640468527399378.jpg',
-        name: 'test',
-        id: 3
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311640468527399378.jpg',
-        name: 'test',
-        id: 4
-      }],
-      abroadList: [{
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311644213048732629.jpg',
-        name: 'test',
-        id: 1
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311644213048732629.jpg',
-        name: 'test',
-        id: 2
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311644213048732629.jpg',
-        name: 'test',
-        id: 3
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311644213048732629.jpg',
-        name: 'test',
-        id: 4
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311644213048732629.jpg',
-        name: 'test',
-        id: 1
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311644213048732629.jpg',
-        name: 'test',
-        id: 2
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311644213048732629.jpg',
-        name: 'test',
-        id: 3
-      }, {
-        img: 'http://piccdn.igetget.com/img/201801/31/201801311644213048732629.jpg',
-        name: 'test',
-        id: 4
-      }],
       labelList: [{
         title: '全部',
         itemId: 0
       }, {
-        title: '国内',
+        title: '知名豪车',
         itemId: 1
       }, {
-        title: '国外',
+        title: '国内',
         itemId: 2
       }]
     }
@@ -124,7 +58,7 @@ export default {
     carList
   },
 
-  async onShow () {
+  async onLoad () {
     // await request('GET', 'course', {})
     wx.showLoading({
       title: '努力加载中'
@@ -151,6 +85,17 @@ export default {
     bindViewTap () {
       const url = '../logs/logs'
       wx.navigateTo({ url })
+    }
+  },
+
+  computed: {
+    famousList () {
+      const total = this.totalList
+      return total.filter(item => item.level === 'famous')
+    },
+    chinaList () {
+      const total = this.totalList
+      return total.filter(item => item.countryId === 3000)
     }
   },
 
