@@ -1,6 +1,6 @@
 <template>
-  <ul class="car-list-wrap clear-fix">
-    <li v-for="item in list" :key="item.id" class="sub-list" @click="viewDetailInfo">
+  <ul class="car-list-wrap clear-fix flex">
+    <li v-for="item in list" :key="item.id" :id="item.id" class="sub-list" @click="viewDetailInfo">
       <img :src="item.img" alt="" class="car-sign" mode="widthFix">
       <p class="name">{{item.name}}-{{item.country}}</p>
     </li>
@@ -12,9 +12,9 @@
     props: ['list'],
     methods: {
       viewDetailInfo (e) {
-        // wx.navigateTo({
-        //   url: '../detail/detail'
-        // })
+        wx.navigateTo({
+          url: `../detail/detail?id=${e.currentTarget.id}`
+        })
       }
     }
   }
@@ -26,15 +26,18 @@
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
     padding: 10px 6px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    -webkit-flex-wrap: wrap;
     .sub-list {
-      width: 50%;
-      float: left;
-      padding: 10px 30px;
+      width: 320rpx;
+      padding: 10px;
       box-sizing: border-box;
       text-align: center;
       .car-sign {
-        width: 100%;
-        border-radius: 4px;
+        width: 240rpx;
+        height: 240rpx;
       }
       .name {
         margin: 6px 0 10px;

@@ -1,12 +1,15 @@
 <template>
   <div class="container col-flex">
     <!--<search/>-->
-    <ul class="tab flex flex-around">
+    <ul class="tab flex flex-between">
       <li v-for="item in labelList"
           :key="item.itemId"
           @click="switchTab"
           :data-id="item.itemId"
-          :class="{active: item.itemId === currentId}">{{item.title}}</li>
+          class="flex1"
+          :class="{active: item.itemId === currentId}">
+        <span>{{item.title}}</span>
+      </li>
     </ul>
     <div class="flex1" style="position: relative; width: 100%;">
       <swiper class="swiper-wrap flex1" :current="currentId" @change="changeTab">
@@ -59,7 +62,6 @@ export default {
   },
 
   async onLoad () {
-    // await request('GET', 'course', {})
     wx.showLoading({
       title: '努力加载中'
     })
@@ -108,14 +110,19 @@ export default {
 .container {
   .tab {
     height: 40px;
+    line-height: 38px;
     background: #f8f8f8;
     border-bottom: 0.5px solid #f0f0f0;
     li {
-      padding: 12px 6px 6px;
+      text-align: center;
       font-size: 14px;
       &.active {
         color: #455A73;
-        border-bottom: 3px solid #455A73;
+        span {
+          display: inline-block;
+          padding: 0 6px;
+          border-bottom: 3px solid #455A73;
+        }
       }
     }
   }

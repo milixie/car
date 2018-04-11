@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A Vue.js project",
   "author": "1435606568@qq.ocm",
+  "main": "/server/app.js",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -12,6 +13,7 @@
   },
   "dependencies": {
     "mpvue": "^1.0.1",
+    "mysql": "^2.15.0",
     "node-sass": "^4.7.2",
     "vuex": "^2.3.1"
   },

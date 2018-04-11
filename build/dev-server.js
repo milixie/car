@@ -82,6 +82,25 @@ var readyPromise = new Promise(resolve => {
 
 var server = app.listen(port, 'localhost')
 
+app.get('/car_list', (req, res) => {
+  const mysql = require('mysql')
+  const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'xiemeili',
+    port: '3306',
+    database: 'car'
+  })
+  connection.connect()
+
+  connection.query('SELECT * from car_table', function (error, results, fields) {
+    if (error) throw error
+    console.log('The results : ', results)
+    res.end(results)
+  })
+
+  connection.end()
+})
 // for 小程序的文件保存机制
 require('webpack-dev-middleware-hard-disk')(compiler, {
   publicPath: webpackConfig.output.publicPath,
