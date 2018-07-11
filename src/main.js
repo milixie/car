@@ -10,12 +10,23 @@ app.$mount()
 export default {
   // 这个字段走 app.json
   config: {
-    pages: ['pages/logs/logs', '^pages/index/index', 'pages/detail/detail'], // 页面前带有 ^ 符号的，会被编译成首页，其他页面可以选填，我们会自动把 webpack entry 里面的入口页面加进去
+    pages: [
+      'pages/logs/logs',
+      '^pages/index/index',
+      'pages/detail/detail',
+      'pages/plugin/plugin'
+    ], // 页面前带有 ^ 符号的，会被编译成首页，其他页面可以选填，我们会自动把 webpack entry 里面的入口页面加进去
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#455A73',
       navigationBarTitleText: '车牌大全',
       navigationBarTextStyle: '#fff'
+    },
+    plugin: {
+      weatherPlugin: {
+        version: '1.0.2',
+        provider: 'wx60d306fd175fe556'
+      }
     }
   },
   onShow: () => {

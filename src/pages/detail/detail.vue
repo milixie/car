@@ -15,7 +15,7 @@
             <img :src="series.brandImg" alt="" mode="widthFix">
             <p class="name">{{series.brandName}}</p>
           </div>
-          <button class="viewImg">戳此查看图集</button>
+          <!--<button class="view-img">戳此查看图集</button>-->
         </li>
       </ul>
     </div>
@@ -93,7 +93,7 @@
             margin-bottom: 10px;
           }
         }
-        .viewImg {
+        .view-img {
           font-size: 12px;
           background: #455A73;
           color: #fff;
