@@ -1,7 +1,8 @@
 <template>
-  <div class="plugin">
-    <weather/>
-  </div>
+  <!--<div class="plugin">-->
+    <!--<weather/>-->
+  <!--</div>-->
+  <weather/>
 </template>
 
 <script>
@@ -11,6 +12,7 @@
       }
     },
     onLoad () {
+
     },
     computed: {
     },
