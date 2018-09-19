@@ -33,15 +33,15 @@
 import search from '@/components/search'
 import card from '@/components/card'
 import carList from '@/components/carList'
-import { totalList } from './../../utils/car'
-// const { request } = require('../../utils/request')
+import { getAllCarBrands } from '../../utils/api'
+const { request } = require('../../utils/request')
 
 export default {
 
   data () {
     return {
       currentId: 0,
-      totalList,
+      totalList: [],
       labelList: [{
         title: '全部',
         itemId: 0
@@ -65,12 +65,21 @@ export default {
     wx.showLoading({
       title: '努力加载中'
     })
-    setTimeout(() => {
-      wx.hideLoading()
-      wx.showToast({
-        title: '加载完毕'
-      })
-    }, 1000)
+    try {
+      const { data: result } = await request('GET', getAllCarBrands, {})
+      console.log(result)
+      if (result && Number(result.code) === 0) {
+        this.totalList = result.data.carList
+      }
+      setTimeout(() => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '加载完毕'
+        })
+      }, 300)
+    } catch (err) {
+
+    }
   },
 
   methods: {
@@ -97,7 +106,7 @@ export default {
     },
     chinaList () {
       const total = this.totalList
-      return total.filter(item => item.countryId === 3000)
+      return total.filter(item => Number(item.countryId) === 3000)
     }
   },
 

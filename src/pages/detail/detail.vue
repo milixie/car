@@ -1,16 +1,21 @@
 <template>
   <div class="detail-wrap">
-    <img :src="detail.coverImg" alt="" mode="widthFix" class="head">
+    <div class="head-img">
+      <img :src="detail.coverImg" alt="" mode="widthFix" class="head">
+    </div>
     <div class="base-info panel">
       <i class="tips"></i>
       <span class="title">品牌故事：</span>
-      <p class="content" v-for="item in detail.brandStory" :key="index">{{item.story}}</p>
+      <div class="content">
+        <wxParse :content="detail.introduction"></wxParse>
+      </div>
+      <!--<p class="content" v-for="item in detail.brandStory" :key="index">{{item.story}}</p>-->
     </div>
-    <div class="brand-series panel">
+    <div class="brand-series panel" v-if="detail.series.length > 0">
       <i class="tips"></i>
       <span class="title">品牌系列</span>
       <ul class="series-list flex">
-        <li v-for="series in detail.brandSeries" :key="series.brandId" class="sub-series">
+        <li v-for="series in detail.series" :key="series.brandId" class="sub-series">
           <div class="flex1 series-info">
             <img :src="series.brandImg" alt="" mode="widthFix">
             <p class="name">{{series.brandName}}</p>
@@ -23,16 +28,27 @@
 </template>
 
 <script>
-  import { detailList } from './../../utils/detail'
+  // import { detailList } from './../../utils/detail'
+  import { request } from '../../utils/request'
+  import wxParse from 'mpvue-wxparse'
+
   export default {
+    components: {
+      wxParse
+    },
     data () {
       return {
         detail: null
       }
     },
-    onLoad () {
-      const id = 100001
-      this.detail = detailList.find(item => item.id === id)
+    async onLoad () {
+      const { id } = this.$root.$mp.query
+      const { data: result } = await request('GET', `carbrand/${id}/?format=json`)
+      console.log(result)
+      if (result && Number(result.code) === 0) {
+        this.detail = result.data.carDetail
+      }
+      // this.detail = detailList.find(item => item.id === id)
     },
     computed: {
     },
@@ -44,8 +60,13 @@
 <style scoped lang="scss">
 .detail-wrap {
   background: rgba(69, 90, 115, 0.1);
-  .head {
+  .head-img {
     width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    .head {
+      width: 200rpx;
+    }
   }
   .panel {
     padding: 16px 20px;
@@ -65,7 +86,7 @@
     }
     .content {
       font-size: 13px;
-      margin-top: 8px;
+      margin-top: 10px;
       line-height: 1.5em;
     }
     .series-list {
