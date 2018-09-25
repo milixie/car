@@ -43,7 +43,7 @@
     },
     async onLoad () {
       const { id } = this.$root.$mp.query
-      const { data: result } = await request('GET', `carbrand/${id}/?format=json`)
+      const { data: result } = await request('GET', `carbrand/${id}`)
       console.log(result)
       if (result && Number(result.code) === 0) {
         this.detail = result.data.carDetail

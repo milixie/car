@@ -1,16 +1,18 @@
 <template>
   <div class="container col-flex">
-    <!--<search/>-->
     <ul class="tab flex flex-between">
       <li v-for="item in labelList"
-          :key="item.itemId"
-          @click="switchTab"
-          :data-id="item.itemId"
-          class="flex1"
-          :class="{active: item.itemId === currentId}">
+        :key="item.itemId"
+        @click="switchTab"
+        :data-id="item.itemId"
+        class="flex1"
+        :class="{active: item.itemId === currentId}">
         <span>{{item.title}}</span>
       </li>
     </ul>
+    <!--<div class="search-tab">-->
+      <!--<search/>-->
+    <!--</div>-->
     <div class="flex1" style="position: relative; width: 100%;">
       <swiper class="swiper-wrap flex1" :current="currentId" @change="changeTab">
         <swiper-item>
@@ -24,7 +26,6 @@
         </swiper-item>
       </swiper>
     </div>
-
     <!--<div class="to-top"><i class="up iconfont icon-h5shanghua"></i></div>-->
   </div>
 </template>
@@ -66,7 +67,10 @@ export default {
       title: '努力加载中'
     })
     try {
-      const { data: result } = await request('GET', getAllCarBrands, {})
+      const { data: result } = await request('GET', getAllCarBrands, {
+        page: 1,
+        pagesize: 1000
+      })
       console.log(result)
       if (result && Number(result.code) === 0) {
         this.totalList = result.data.carList
@@ -140,7 +144,7 @@ export default {
     width: 100%;
     height: 100%;
     left: 0;
-    top:0;
+    top: 0;
     bottom: 0;
     right: 0;
     -webkit-overflow-scrolling: touch;

@@ -15,9 +15,10 @@ export default {
 page {
   width: 100%;
   height: 100%;
+}
+view, input, textarea, text {
   box-sizing: border-box;
 }
-
 .container {
   width: 100%;
   height: 100%;

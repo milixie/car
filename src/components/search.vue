@@ -2,7 +2,7 @@
   <div class="search flex">
     <i class="iconfont icon-sousuo search-icon"></i>
     <input type="search" class="search-input flex1" v-model="searchValue" placeholder="search" @focus="focusSearchBox" @blur="blurSearchBox" >
-    <p v-if="text" class="sure" @click="beginSearch">{{text}}</p>
+    <!--<p v-if="text" class="sure" @click="beginSearch">{{text}}</p>-->
   </div>
 </template>
 
@@ -35,7 +35,6 @@
 <style scoped lang="scss">
   .search {
     position: relative;
-    height: 40px;
     padding: 10px 16px;
     background: #455A73;
     justify-content: center;
@@ -53,6 +52,7 @@
     .search-input {
       border: none;
       outline: none;
+      height: 30px;
       border-radius: 4px;
       padding: 5px 26px;
       font-size: 14px;
