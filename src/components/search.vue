@@ -1,8 +1,8 @@
 <template>
   <div class="search flex">
-    <i class="iconfont icon-sousuo search-icon"></i>
-    <input type="search" class="search-input flex1" v-model="searchValue" placeholder="search" @focus="focusSearchBox" @blur="blurSearchBox" >
-    <!--<p v-if="text" class="sure" @click="beginSearch">{{text}}</p>-->
+    <i class="iconfont icon-sousuo1 search-icon"></i>
+    <input type="search" class="search-input flex1" v-model="searchValue" placeholder="大众" @focus="focusSearchBox">
+    <p v-if="text" class="sure" @click="beginSearch">{{text}}</p>
   </div>
 </template>
 
@@ -17,16 +17,12 @@
     props: [],
     methods: {
       focusSearchBox () {
-        console.log(111)
         this.text = '确定'
       },
-      blurSearchBox (e) {
-        this.searchValue = e.target.value
-      },
-      beginSearch () {
+      beginSearch (e) {
         this.text = ''
-        console.log('开始搜索')
-        this.searchValue = ''
+        if (this.searchValue === '') this.searchValue = '大众'
+        this.$emit('search', this.searchValue)
       }
     }
   }
@@ -42,8 +38,6 @@
     .search-icon {
       position: absolute;
       left: 22px;
-      top: 50%;
-      margin-top: -10px;
       width: 20px;
       height: 20px;
       text-align: center;
@@ -52,8 +46,8 @@
     .search-input {
       border: none;
       outline: none;
-      height: 30px;
-      border-radius: 4px;
+      height: 36px;
+      border-radius: 18px;
       padding: 5px 26px;
       font-size: 14px;
       background: #fff;

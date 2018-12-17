@@ -1,0 +1,57 @@
+export const hotSearch = [{
+  id: 100001,
+  img: 'http://7xj5et.com2.z0.glb.clouddn.com/chepaidaquan/dazhong.png',
+  name: '大众',
+  country: '德国',
+  countryId: 1000,
+  ranking: 1,
+  level: ''
+}, {
+  id: 200001,
+  img: 'http://7xj5et.com2.z0.glb.clouddn.com/chepaidaquan/fengtian.png',
+  name: '丰田',
+  country: '日本',
+  countryId: 2000,
+  ranking: 2,
+  level: ''
+}, {
+  id: 200002,
+  img: 'http://7xj5et.com2.z0.glb.clouddn.com/chepaidaquan/bentian.png',
+  name: '本田',
+  country: '日本',
+  countryId: 2000,
+  ranking: 4,
+  level: ''
+}, {
+  id: 100003,
+  img: 'http://7xj5et.com2.z0.glb.clouddn.com/chepaidaquan/baoma.png',
+  name: '宝马',
+  country: '德国',
+  countryId: 1000,
+  ranking: 9,
+  level: 'famous'
+}, {
+  id: 100004,
+  img: 'http://7xj5et.com2.z0.glb.clouddn.com/chepaidaquan/benchi.png',
+  name: '奔驰',
+  country: '德国',
+  countryId: 1000,
+  ranking: 13,
+  level: 'famous'
+}, {
+  id: 300010,
+  img: 'http://7xj5et.com2.z0.glb.clouddn.com/chepaidaquan/dongfengfengguang.png',
+  name: '东风风光',
+  country: '中国',
+  countryId: 3000,
+  ranking: 32,
+  level: ''
+}, {
+  id: 1000002,
+  img: 'http://7xj5et.com2.z0.glb.clouddn.com/chepaidaquan/masaladi.png',
+  name: '玛莎拉蒂',
+  country: '意大利',
+  countryId: 10000,
+  ranking: 71,
+  level: 'famous'
+}]

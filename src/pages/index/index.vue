@@ -10,28 +10,32 @@
         <span>{{item.title}}</span>
       </li>
     </ul>
-    <!--<div class="search-tab">-->
-      <!--<search/>-->
-    <!--</div>-->
+
     <div class="flex1" style="position: relative; width: 100%;">
       <swiper class="swiper-wrap flex1" :current="currentId" @change="changeTab">
         <swiper-item>
           <car-list :list="totalList"/>
         </swiper-item>
-        <swiper-item>
-          <car-list :list="famousList"/>
-        </swiper-item>
+        <!--<swiper-item>-->
+          <!--<car-list :list="famousList"/>-->
+        <!--</swiper-item>-->
         <swiper-item>
           <car-list :list="chinaList"/>
         </swiper-item>
       </swiper>
     </div>
     <!--<div class="to-top"><i class="up iconfont icon-h5shanghua"></i></div>-->
+    <div @click="goSearch">
+      <div class="search-btn col-flex">
+        <i class="iconfont icon-sousuo1 search-icon"></i>
+        <span class="search-txt">搜索</span>
+      </div>
+      <div class="search-bg"></div>
+    </div>
   </div>
 </template>
 
 <script>
-import search from '@/components/search'
 import card from '@/components/card'
 import carList from '@/components/carList'
 import { getAllCarBrands } from '../../utils/api'
@@ -46,18 +50,17 @@ export default {
       labelList: [{
         title: '全部',
         itemId: 0
-      }, {
-        title: '知名豪车',
-        itemId: 1
+      // }, {
+      //   title: '知名豪车',
+      //   itemId: 1
       }, {
         title: '国内',
-        itemId: 2
+        itemId: 1
       }]
     }
   },
 
   components: {
-    search,
     card,
     carList
   },
@@ -71,7 +74,6 @@ export default {
         page: 1,
         pagesize: 1000
       })
-      console.log(result)
       if (result && Number(result.code) === 0) {
         this.totalList = result.data.carList
       }
@@ -100,6 +102,11 @@ export default {
     bindViewTap () {
       const url = '../logs/logs'
       wx.navigateTo({ url })
+    },
+    goSearch () {
+      wx.navigateTo({
+        url: '/pages/search/search'
+      })
     }
   },
 
@@ -164,6 +171,39 @@ export default {
       font-size: 20px;
       color: #fff;
     }
+  }
+  .search-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    background: #455A73;
+    border-radius: 50%;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    .search-icon {
+      color: #fff;
+      margin-bottom: 2px;
+      font-size: 14px;
+    }
+    .search-txt {
+      font-size: 10px;
+      color: #fff;
+    }
+  }
+  .search-bg {
+    position: fixed;
+    right: 27px;
+    bottom: 25px;
+    width: 35px;
+    height: 35px;
+    background: #455A73;
+    box-shadow: 0 10px 30px #455A73;
+    border-radius: 50%;
+    overflow: hidden;
   }
 }
 </style>
