@@ -2,7 +2,7 @@
   <div class="hot-search" v-show="list.length > 0">
     <h3>{{ title }}</h3>
     <ul class="search-record">
-      <li v-for="item in list" :key="item.id" @click="searchItem">{{ item.name }}</li>
+      <li v-for="item in list" :key="item.id" @click="searchItem(item)">{{ item.name }}</li>
     </ul>
   </div>
 </template>
@@ -15,7 +15,8 @@
     },
     props: ['title', 'list'],
     methods: {
-      searchItem () {
+      searchItem (item) {
+        this.$emit('searchItem', item.name)
       }
     }
   }

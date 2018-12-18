@@ -9,7 +9,7 @@
     <block v-else>
       <div class="none flex1 col-flex">
         <i class="iconfont icon-web__zanwujilu none-cars"></i>
-        <p>暂无记录</p>
+        <p>{{nullTxt}}</p>
       </div>
     </block>
   </ul>
@@ -17,7 +17,19 @@
 
 <script>
   export default {
-    props: ['list'],
+    data () {
+      return {}
+    },
+    props: {
+      list: {
+        type: Array,
+        default: []
+      },
+      nullTxt: {
+        type: String,
+        default: '暂无记录'
+      }
+    },
     methods: {
       viewDetailInfo (e) {
         console.log(e)
